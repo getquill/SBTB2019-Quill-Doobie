@@ -1,0 +1,3 @@
+-- Uncomment when using Postgres
+--create database quill_doobie;
+--create role sa with login password 'sa'
