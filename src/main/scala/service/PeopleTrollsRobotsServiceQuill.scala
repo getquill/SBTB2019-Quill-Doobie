@@ -42,7 +42,7 @@ class PeopleTrollsRobotsServiceQuill(xa: Transactor[IO]) extends Http4sDsl[IO] {
       }.transact(xa).map(_.asJson))
 
     case GET -> Root / "quill" / "robotsWhoAre" / role / "aged" / IntVar(years) :? KillerRobotFlag(asa) =>
-      val robotsAged = quote { query[Robot].filter(rb => rb.age <= lift(years)) }
+      val robotsAged = quote { query[Robot].filter(r => r.age <= lift(years)) }
       val result =
         if (asa)
           stream(joinTables[Robot](lift(role), robotsAged))
@@ -58,7 +58,7 @@ class PeopleTrollsRobotsServiceQuill(xa: Transactor[IO]) extends Http4sDsl[IO] {
         for {
           t <- tbl
           ur <- query[UserRole].join(ur => ur.userFk == t.id)
-          r <- query[Role].join(r => r.id == ur.roleFk && r.name == role)
+          r <- query[Role].join(r => r.id == ur.roleFk && r.name == role) //hello
           rp <- query[RolePermission].join(rp => rp.roleFk == r.id)
           p <- query[Permission].join(p => rp.permissionFk == p.id)
         } yield (t, r.name, p.name)

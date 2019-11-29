@@ -46,7 +46,7 @@ lazy val `quill-doobie-http4s` = (project in file("."))
 
       "org.flywaydb"          %  "flyway-core"          % FlywayVersion,
 
-      "io.getquill"           %% "quill-jdbc"           % "3.4.8",
+      "io.getquill"           %% "quill-jdbc"           % "3.5.0",
       "org.tpolecat"           %% "doobie-quill"        % "0.8.4",
 
       "io.circe"              %% "circe-generic"        % CirceVersion,
